@@ -1,1 +1,1 @@
-# eduTech-frontend
+To start development server run npm start
