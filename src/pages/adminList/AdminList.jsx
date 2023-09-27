@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import './AdminList.css';
-import { fetchAdmins } from '../../api';
+import { fetchAdmins, getToken } from '../../api';
 
 import UsersTable from '../../components/usersTable/usersTable';
 
 const AdminList = () => {
+	const navigate = useNavigate();
     const [admins, setAdmins] = useState([]);
 	const [filters, setFilters] = useState({
 		id: null,
@@ -35,7 +37,10 @@ const AdminList = () => {
 	    const response = await fetchAdmins(result);
 	    setAdmins(response.data);
 	} catch (error) {
-	    console.error(`Error fetching admins: ${error}`);
+	    console.error(`Error fetching admins: ${error.message}`);
+		if(error.message.includes("Request failed with status code 401")){
+			navigate("/admins/login")
+		}
 	}
     };
 
@@ -64,7 +69,7 @@ const AdminList = () => {
 					<td><input type="text" name="phoneNumber" value={phoneNumber} onChange={handleChange}/></td>
 					<td></td>
 				</tr>
-				<UsersTable users={admins}/>
+				<UsersTable users={admins} type="admins"/>
 				</tbody>
 			  </table>
 		} 

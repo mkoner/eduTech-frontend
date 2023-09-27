@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { fetchLearners } from '../../api';
 
 import UsersTable from '../../components/usersTable/usersTable';
 
 const LearnerList = () => {
+	const navigate = useNavigate();
     const [learners, setLearners] = useState([]);
 	const [filters, setFilters] = useState({
 		id: null,
@@ -34,6 +36,9 @@ const LearnerList = () => {
 	    setLearners(response.data);
 	} catch (error) {
 	    console.error(`Error fetching learners: ${error}`);
+		if(error.message.includes("Request failed with status code 401")){
+			navigate("/admins/login")
+		}
 	}
     };
 
@@ -62,7 +67,7 @@ const LearnerList = () => {
 					<td><input type="text" name="phoneNumber" value={phoneNumber} onChange={handleChange}/></td>
 					<td></td>
 				</tr>
-				<UsersTable users={learners}/>
+				<UsersTable users={learners} type="learners"/>
 				</tbody>
 			  </table>
 		} 

@@ -11,6 +11,8 @@ import AdminLogin from './pages/adminLogin/AdminLogin';
 import LearnerLogin from './pages/learnerLogin/LearnerLogin';
 import LearnerList from './pages/learnerList/LearnerList';
 import CourseList from './pages/courseList/CourseList';
+import AdminDetailsPage from './pages/adminDetailsPage/AdminDetailsPage';
+import LearnerDetailsPage from './pages/learnerDetailsPage/LearnerDetailsPage';
 
 const App = () => {
     return (
@@ -31,9 +33,11 @@ const App = () => {
 		    <Route path="/" element={<HomePage />} />
 		    <Route path="/admins" element={<AdminList />} />
 			<Route path="/admins/login" element={<AdminLogin />} />
+			<Route path="/admins/:id" element={<AdminDetailsPage />} />
 		    <Route path="/login" element={<Login />} />
 		    <Route path="/learners" element={<LearnerList />} />
 			<Route path="/learners/login" element={<LearnerLogin />} />
+			<Route path="/learners/:id" element={<LearnerDetailsPage />} />
 		    <Route path="/course-materials" element={<CourseMaterials />} />
 		    <Route path="/courses" element={<CourseList />} />
 		</Routes>

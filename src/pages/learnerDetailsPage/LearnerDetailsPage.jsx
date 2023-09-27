@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { getAdminById, updateAdmin } from "../../api";
+import { getLearnerById, updateLearner } from "../../api";
 
-const AdminDetailsPage = () => {
+const LearnerDetailsPage = () => {
   const navigate = useNavigate();
   const { id } = useParams(); 
 
-  const [admin, setAdmin] = useState({
+  const [learner, setLearner] = useState({ 
     first_name: "", 
     last_name: "", 
     email: "",
@@ -16,17 +16,17 @@ const AdminDetailsPage = () => {
     is_active: "",
   });
 
-  const {first_name, last_name, email, phone_number, password, is_active} = admin;
+  const {first_name, last_name, email, phone_number, password, is_active} = learner;
 
   useEffect(()=>{
-    getAdmin()
+    getLearner()
   }, 
   [id])
 
-  const getAdmin = async () => {
+  const getLearner = async () => {
     try {
-        const response = await getAdminById(id);        
-        setAdmin({
+        const response = await getLearnerById(id);        
+        setLearner({
           first_name: response.first_name,
           last_name: response.last_name,
           email: response.email,
@@ -35,23 +35,23 @@ const AdminDetailsPage = () => {
           is_active: response.is_active,
         });
     } catch (error) {
-        console.error(`Error fetching admins: ${error.message}`);
+        console.error(`Error fetching learners: ${error.message}`);
       if(error.message.includes("Request failed with status code 401")){
-        navigate("/admins/login")
+        navigate("/learners/login")
       }
     }
       };
 
   const handleChange = (evt) => {
     const { name, value, } = evt.target;
-    setAdmin((prevState) => ({
+    setLearner((prevState) => ({
       ...prevState,
       [name]: value,
     }))
   }
 
   const checkHandler = () => {
-    setAdmin((prevState) => ({
+    setLearner((prevState) => ({
       ...prevState,
       is_active: !is_active,
     }))
@@ -59,9 +59,9 @@ const AdminDetailsPage = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const {password, ...dataWithNopassword} = admin
-    const data = (admin.password != "") ? admin : dataWithNopassword;
-    await updateAdmin(id, data)
+    const {password, ...dataWithNopassword} = learner
+    const data = (learner.password != "") ? learner : dataWithNopassword;
+    await updateLearner(id, data)
   };
 
   return (
@@ -100,9 +100,9 @@ const AdminDetailsPage = () => {
       />
       <label>Password</label>
         <input
-        type="text"
+        type="password"
         name="password"
-        placeholder="Email"
+        placeholder="New password"
         value={password}
         onChange={handleChange}
       />
@@ -116,4 +116,4 @@ const AdminDetailsPage = () => {
   );
 };
 
-export default AdminDetailsPage;
+export default LearnerDetailsPage;
