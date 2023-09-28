@@ -14,6 +14,7 @@ const AdminLogin = () => {
     const response = await adminLogin({email, password});
     if (response.token) {
       localStorage.setItem("token", response.token);
+      localStorage.setItem("userType", "Admin");
       navigate('/');
     }
     else {

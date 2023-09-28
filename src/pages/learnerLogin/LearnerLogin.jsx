@@ -13,6 +13,7 @@ const LearnerLogin = () => {
     const response = await learnerLogin({email, password});
     if (response.token) {
       localStorage.setItem("token", response.token);
+      localStorage.setItem("userType", "Learner");
       navigate('/');
     }
     else {

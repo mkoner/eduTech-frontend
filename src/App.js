@@ -13,6 +13,7 @@ import LearnerList from './pages/learnerList/LearnerList';
 import CourseList from './pages/courseList/CourseList';
 import AdminDetailsPage from './pages/adminDetailsPage/AdminDetailsPage';
 import LearnerDetailsPage from './pages/learnerDetailsPage/LearnerDetailsPage';
+import CourseDetailsPage from './pages/courseDetailsPage/CourseDetailsPage';
 
 const App = () => {
     return (
@@ -40,6 +41,7 @@ const App = () => {
 			<Route path="/learners/:id" element={<LearnerDetailsPage />} />
 		    <Route path="/course-materials" element={<CourseMaterials />} />
 		    <Route path="/courses" element={<CourseList />} />
+			<Route path="/courses/:id" element={<CourseDetailsPage />} />
 		</Routes>
 	    </div>
 	</Router>

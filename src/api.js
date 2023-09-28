@@ -88,4 +88,18 @@ export const updateLearner = async (id, data) => {
     return response.data;
 };
 
+export const getCourseById = async (id) => {
+  const response = await axios.get(`${API_URL}courses/${id}`);
+  return response.data;
+};
+
+export const updateCourse = async (id, data) => {
+  const response = await axios.put(`${API_URL}courses/${id}`, data, {
+      headers: {
+        'Authorization': `Token ${token}`
+      },
+    });
+  return response.data;
+};
+
 // Add other API calls (getLearners, getCourses, etc.) here

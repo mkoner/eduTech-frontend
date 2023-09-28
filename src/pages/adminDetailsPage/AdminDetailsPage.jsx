@@ -100,9 +100,9 @@ const AdminDetailsPage = () => {
       />
       <label>Password</label>
         <input
-        type="text"
+        type="password"
         name="password"
-        placeholder="Email"
+        placeholder="New password"
         value={password}
         onChange={handleChange}
       />
