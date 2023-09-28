@@ -1,0 +1,33 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 0.5em;
+    color: #333;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+input[type="submit"] {
+    margin-top: 1em;
+    padding: 0.7em;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
