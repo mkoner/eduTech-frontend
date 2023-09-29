@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom'
 
-import { getCourseById, updateCourse } from "../../api";
+import { getCourseById, updateCourse, fetchCourseMaterialsForCourse } from "../../api";
 
 const CourseDetailsPage = () => {
-const userType = () => localStorage.getItem("userType") ? localStorage.getItem("userType") : null;
+const userType = localStorage.getItem("userType") ? localStorage.getItem("userType") : null;
   const navigate = useNavigate();
   const { id } = useParams(); 
 
@@ -14,9 +14,21 @@ const userType = () => localStorage.getItem("userType") ? localStorage.getItem("
   });
 
   const {course_name, description} = course;
+  const [courseMaterials, setCourseMaterials] = useState([]);
+
+  const [filters, setFilters] = useState({
+		id: null,
+		title: null,
+		author: null,
+		source: null,
+		page: 1,
+	});
+	const {title, author, source, page} = filters;
+  const cid = filters.id
 
   useEffect(()=>{
     getCourse()
+    getCourseMaterials()
   }, 
   [id])
 
@@ -30,6 +42,16 @@ const userType = () => localStorage.getItem("userType") ? localStorage.getItem("
     } catch (error) {
         console.error(`Error fetching courses: ${error.message}`);
     }
+  };
+
+  const getCourseMaterials = async () => {
+    let result =  Object.entries(filters).reduce((a,[k,v]) => (v == null ? a : (a[k]=v, a)), {});
+    try {
+        const response = await fetchCourseMaterialsForCourse(id, result);
+        setCourseMaterials(response.data);
+    } catch (error) {
+        console.error(`Error fetching course materials: ${error.message}`);
+    }
       };
 
   const handleChange = (evt) => {
@@ -40,11 +62,22 @@ const userType = () => localStorage.getItem("userType") ? localStorage.getItem("
     }))
   }
 
+  const handleFiltersChange = (evt) => {
+		const { name, value } = evt.target;
+		setFilters((prevState) => ({
+		  ...prevState,
+		  [name]: value,
+		}))
+	  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     await updateCourse(id, course)
   };
+
+ const addMaterial = async () => {
+  navigate(`/add-material/${id}`)
+ }
 
   if (userType == "Admin") {
     return (
@@ -66,12 +99,34 @@ const userType = () => localStorage.getItem("userType") ? localStorage.getItem("
            <button type="submit">Update</button>
            </form>
         </div>  
-        <div className="course-laterailq-admin">
-            
+        <div className="course-materails-admin">
+          <h2>Course materials</h2>
+          <button onClick={addMaterial}>Add Material</button>
+          {courseMaterials.length > 0 && <table className="course-materails-table">
+            <thead>
+              <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Source</th>
+              <th>Author</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                courseMaterials.map(courseMaterial => <tr key={courseMaterial.id}>
+                  <td>{courseMaterial.id}</td>
+                  <td>{courseMaterial.title}</td>
+                  <td>{courseMaterial.source}</td>
+                  <td>{courseMaterial.author}</td>
+                </tr>)
+              }
+            </tbody>
+          </table> } 
         </div>
         </>
       );
   }
+
 
   return (
     <div className="course-details">
