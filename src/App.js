@@ -14,6 +14,7 @@ import CourseList from './pages/courseList/CourseList';
 import AdminDetailsPage from './pages/adminDetailsPage/AdminDetailsPage';
 import LearnerDetailsPage from './pages/learnerDetailsPage/LearnerDetailsPage';
 import CourseDetailsPage from './pages/courseDetailsPage/CourseDetailsPage';
+import AddCourseMaterial from './pages/addCourseMaterial/AddCourseMaterial';
 
 const App = () => {
     return (
@@ -42,6 +43,8 @@ const App = () => {
 		    <Route path="/course-materials" element={<CourseMaterials />} />
 		    <Route path="/courses" element={<CourseList />} />
 			<Route path="/courses/:id" element={<CourseDetailsPage />} />
+			<Route path="add-material/:id" element={<AddCourseMaterial />} />
+
 		</Routes>
 	    </div>
 	</Router>
