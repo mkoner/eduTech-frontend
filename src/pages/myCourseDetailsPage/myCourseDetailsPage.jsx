@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { getCourseById, updateCourse, fetchCourseMaterialsForCourse, registerForCourse } from "../../api";
 
-const CourseDetailsPage = () => {
+const MyCourseDetailsPage = () => {
   const userType = localStorage.getItem("userType") ? localStorage.getItem("userType") : null;
   const navigate = useNavigate();
   const { id } = useParams(); 
@@ -22,6 +22,7 @@ const CourseDetailsPage = () => {
 		author: null,
 		source: null,
 		page: 1,
+        page_size: 20,
 	});
 	const {title, author, source, page} = filters;
   const cid = filters.id
@@ -75,79 +76,38 @@ const CourseDetailsPage = () => {
     await updateCourse(id, course)
   };
 
- const addMaterial = async () => {
-  navigate(`/add-material/${id}`)
- }
 
- const register = async (evt) => {
-  evt.preventDefault();
-  try {
-    const response = await registerForCourse(id);
-    navigate("/learners/my-courses")
-  } catch (error) {
-    if(error.message.includes("Request failed with status code 401")){
-			navigate("/learners/login")
-		}
-  }
- }
-
-  if (userType == "Admin") {
+  if (userType == "Learner") {
     return (
         <>
-        <div className="course-details-admin">
-            <form onSubmit={handleSubmit}>
-            <label>Course name</label>
-            <input
-            type="text"
-            name="course_name"
-            placeholder="Course name"
-            value={course_name}
-            onChange={handleChange}
-           />
-           <label>Description</label>
-           <textarea name="description"  cols="50"
-           rows="7" value={description} onChange={handleChange} />
-    
-           <button type="submit">Update</button>
-           </form>
-        </div>  
-        <div className="course-materails-admin">
-          <h2>Course materials</h2>
-          <button onClick={addMaterial}>Add Material</button>
-          {courseMaterials.length > 0 && <table className="course-materails-table">
-            <thead>
-              <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Source</th>
-              <th>Author</th>
-              </tr>
-            </thead>
-            <tbody>
+        <div className="course-details-learner">
+            <div className="course-details">
+                <h2>{course_name}</h2>
+            </div>
+            <div className="course-materails-admin">
+          
+          {courseMaterials.length > 0 && 
+            <div>
               {
-                courseMaterials.map(courseMaterial => <tr key={courseMaterial.id}>
-                  <td>{courseMaterial.id}</td>
-                  <td>{courseMaterial.title}</td>
-                  <td>{courseMaterial.source}</td>
-                  <td>{courseMaterial.author}</td>
-                </tr>)
+                courseMaterials.map(courseMaterial => <div key={courseMaterial.id}>
+                  <h4><a href={courseMaterial.link} target="_blank">{courseMaterial.title}</a></h4>
+                  {courseMaterial.source && <span>Source: {courseMaterial.source}</span>}
+                  {courseMaterial.author && <span> Author: {courseMaterial.author}</span>}
+                </div>)
               }
-            </tbody>
-          </table> } 
+            </div>
+           } 
         </div>
+        </div>  
         </>
       );
   }
 
 
   return (
-    <div className="course-details">
-        <h2>{course_name}</h2>
-        <p>{description}</p>
-        <button onClick={register}>Register</button>
-    </div>
+    <></>
   )
 
 };
 
-export default CourseDetailsPage;
+export default MyCourseDetailsPage;

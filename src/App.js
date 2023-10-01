@@ -15,12 +15,13 @@ import AdminDetailsPage from './pages/adminDetailsPage/AdminDetailsPage';
 import LearnerDetailsPage from './pages/learnerDetailsPage/LearnerDetailsPage';
 import CourseDetailsPage from './pages/courseDetailsPage/CourseDetailsPage';
 import AddCourseMaterial from './pages/addCourseMaterial/AddCourseMaterial';
+import AdminCourseCreation from './pages/adminCourseCreation/AdminCourseCreation';
+import MyCourseList from './pages/myCourses/myCourses';
+import MyCourseDetailsPage from './pages/myCourseDetailsPage/myCourseDetailsPage';
+import Header from './components/header/header';
 
-const App = () => {
-    return (
-	<Router>
-	    <div>
-		<nav className="navbar navbar-expand-lg navbar-light bg-light">
+/*
+<nav className="navbar navbar-expand-lg navbar-light bg-light">
 		    <div className="container-fluid">
 			<ul className="navbar-nav me-auto mb-2 mb-lg-0">
 			    <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
@@ -28,9 +29,17 @@ const App = () => {
 			    <li className="nav-item"><Link className="nav-link" to="/learners">Learners</Link></li>
 			    <li className="nav-item"><Link className="nav-link" to="/course-materials">Course Materials</Link></li>
 			    <li className="nav-item"><Link className="nav-link" to="/courses">Courses</Link></li>
+				<li className="nav-item"><Link className="nav-link" to="learners/my-courses">My courses</Link></li>
 			</ul>
 		    </div>
 		</nav>
+*/
+
+const App = () => {
+    return (
+	<Router>
+	    <div>
+		<Header/>
 		<Routes>
 		    <Route path="/" element={<HomePage />} />
 		    <Route path="/admins" element={<AdminList />} />
@@ -39,10 +48,13 @@ const App = () => {
 		    <Route path="/login" element={<Login />} />
 		    <Route path="/learners" element={<LearnerList />} />
 			<Route path="/learners/login" element={<LearnerLogin />} />
+			<Route path="/learners/my-courses" element={<MyCourseList />} />
 			<Route path="/learners/:id" element={<LearnerDetailsPage />} />
 		    <Route path="/course-materials" element={<CourseMaterials />} />
 		    <Route path="/courses" element={<CourseList />} />
+			<Route path="/add-course" element={<AdminCourseCreation />} />
 			<Route path="/courses/:id" element={<CourseDetailsPage />} />
+			<Route path="/mycourses/:id" element={<MyCourseDetailsPage />} />
 			<Route path="add-material/:id" element={<AddCourseMaterial />} />
 
 		</Routes>

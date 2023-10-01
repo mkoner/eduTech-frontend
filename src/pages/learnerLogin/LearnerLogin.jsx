@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 
+import './LearnerLogin.css'
+
 import { learnerLogin } from "../../api";
 const LearnerLogin = () => {
   const navigate = useNavigate();
@@ -22,24 +24,38 @@ const LearnerLogin = () => {
   };
 
   return (
-    <div className="login-form">
+    <div className="login-container">
+      <form className="learner-login-form" action={handleSubmit}>
       <h1>Login</h1>
+      
       <input
         type="text"
         placeholder="email"
         value={email}
+        required
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
+        required
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit" onClick={handleSubmit}>
         Login
       </button>
+    
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </form>
+    <div className="register-not-account">
+      <p>Don't you have an account yet?</p>
+      <button>REGISTER</button>
+    </div>
+    <div className="admin-account-login">
+      <p>Are you an admin? <a href="/admins/login">login as admin</a></p>
+      
+    </div>
     </div>
   );
 };

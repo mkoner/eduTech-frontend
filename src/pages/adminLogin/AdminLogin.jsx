@@ -23,25 +23,27 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="login-form">
+    <form className="login-form" action={handleSubmit}>
       <h1>Admin Login</h1>
       <input
         type="text"
         placeholder="email"
         value={email}
+        required
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
         placeholder="Password"
         value={password}
+        required
         onChange={(e) => setPassword(e.target.value)}
       />
       <button type="submit" onClick={handleSubmit}>
         Login
       </button>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-    </div>
+    </form>
   );
 };
 

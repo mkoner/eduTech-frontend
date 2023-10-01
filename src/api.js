@@ -118,4 +118,33 @@ export const createCourseMaterial = async (id, data) => {
   return response.data;
 };
 
+export const createCourse = async (data) => {
+  const response = await axios.post(`${API_URL}courses`, data, {
+      headers: {
+        'Authorization': `Token ${token}`
+      },
+    });
+  return response.data;
+};
+
+export const fetchLearnersCourses = async (id, filters) => {
+  const response = await axios.get(`${API_URL}learners/courses`, {
+    headers: {
+      'Authorization': `Token ${token}`
+    },
+      params: filters
+    });
+  return response.data;
+};
+
+export const registerForCourse = async (id) => {
+  const response = await axios.get(`${API_URL}learners/register/${id}`,
+  {
+    headers: {
+      'Authorization': `Token ${token}`
+    },
+  });
+  return response.data;
+};
+
 // Add other API calls (getLearners, getCourses, etc.) here
