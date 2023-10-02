@@ -81,6 +81,10 @@ const CourseDetailsPage = () => {
 
  const register = async (evt) => {
   evt.preventDefault();
+  const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+  if(!token){
+    navigate("/learners/login")
+  }
   try {
     const response = await registerForCourse(id);
     navigate("/learners/my-courses")

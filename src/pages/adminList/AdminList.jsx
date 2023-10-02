@@ -47,7 +47,10 @@ const AdminList = () => {
 
     return (
 	<div className="admin-container">
+	   <div className="admins-header">
 	   <h1>Admin Users</h1>
+	   <button onClick={()=> navigate("/admins/new")}>New Admin</button>
+	   </div>
 	    {admins &&
 			    <table className="user-list">
 				<thead>

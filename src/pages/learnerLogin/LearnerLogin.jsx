@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 
 import './LearnerLogin.css'
@@ -10,13 +10,21 @@ const LearnerLogin = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+
+  useEffect(() => {
+    if(token){
+      navigate(-1);
+    }
+  }, [token]); 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await learnerLogin({email, password});
     if (response.token) {
       localStorage.setItem("token", response.token);
       localStorage.setItem("userType", "Learner");
-      navigate('/');
+      navigate(-1);
     }
     else {
       setErrorMessage("Invalid username or password");
@@ -50,7 +58,7 @@ const LearnerLogin = () => {
     </form>
     <div className="register-not-account">
       <p>Don't you have an account yet?</p>
-      <button>REGISTER</button>
+      <button onClick={()=>navigate("/learners/signup")}>REGISTER</button>
     </div>
     <div className="admin-account-login">
       <p>Are you an admin? <a href="/admins/login">login as admin</a></p>

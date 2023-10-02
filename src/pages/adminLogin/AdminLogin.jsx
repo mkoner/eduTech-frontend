@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import './AdminLogin.css';
 
@@ -9,13 +9,21 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+  
+  useEffect(() => {
+    if(token){
+      navigate(-1);
+    }
+  }, [token]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await adminLogin({email, password});
     if (response.token) {
       localStorage.setItem("token", response.token);
       localStorage.setItem("userType", "Admin");
-      navigate('/');
+      navigate(-1);
     }
     else {
       setErrorMessage("Invalid username or password");

@@ -19,6 +19,9 @@ import AdminCourseCreation from './pages/adminCourseCreation/AdminCourseCreation
 import MyCourseList from './pages/myCourses/myCourses';
 import MyCourseDetailsPage from './pages/myCourseDetailsPage/myCourseDetailsPage';
 import Header from './components/header/header';
+import LearnerSignUp from './pages/learnerSignUp/LearnerSignUp';
+import AddAdmin from './pages/addAdmin/AddAdmin';
+import Profile from './pages/profile/profile';
 
 /*
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -44,10 +47,12 @@ const App = () => {
 		    <Route path="/" element={<HomePage />} />
 		    <Route path="/admins" element={<AdminList />} />
 			<Route path="/admins/login" element={<AdminLogin />} />
+			<Route path="/admins/new" element={<AddAdmin />} />
 			<Route path="/admins/:id" element={<AdminDetailsPage />} />
 		    <Route path="/login" element={<Login />} />
 		    <Route path="/learners" element={<LearnerList />} />
 			<Route path="/learners/login" element={<LearnerLogin />} />
+			<Route path="/learners/signup" element={<LearnerSignUp />} />
 			<Route path="/learners/my-courses" element={<MyCourseList />} />
 			<Route path="/learners/:id" element={<LearnerDetailsPage />} />
 		    <Route path="/course-materials" element={<CourseMaterials />} />
@@ -56,6 +61,7 @@ const App = () => {
 			<Route path="/courses/:id" element={<CourseDetailsPage />} />
 			<Route path="/mycourses/:id" element={<MyCourseDetailsPage />} />
 			<Route path="add-material/:id" element={<AddCourseMaterial />} />
+			<Route path="/profile" element={<Profile />} />
 
 		</Routes>
 	    </div>

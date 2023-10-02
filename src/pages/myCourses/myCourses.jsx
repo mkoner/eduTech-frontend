@@ -40,9 +40,6 @@ const MyCourseList = () => {
         if(error.message.includes("Request failed with status code 401")){
 			navigate("/learners/login")
 		}
-        else {
-			navigate("/")
-		}
 	}
     };
 

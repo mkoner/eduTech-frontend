@@ -127,7 +127,7 @@ export const createCourse = async (data) => {
   return response.data;
 };
 
-export const fetchLearnersCourses = async (id, filters) => {
+export const fetchLearnersCourses = async (filters) => {
   const response = await axios.get(`${API_URL}learners/courses`, {
     headers: {
       'Authorization': `Token ${token}`
@@ -144,6 +144,20 @@ export const registerForCourse = async (id) => {
       'Authorization': `Token ${token}`
     },
   });
+  return response.data;
+};
+
+export const addAdmin = async (data) => {
+  const response = await axios.post(`${API_URL}admins`, data, {
+      headers: {
+        'Authorization': `Token ${token}`
+      },
+    });
+  return response.data;
+};
+
+export const addLearner = async (data) => {
+  const response = await axios.post(`${API_URL}learners`, data);
   return response.data;
 };
 
