@@ -17,7 +17,7 @@ const Header = () => {
 	<header className="header">
 	    <h1>EduTech</h1>
 	    <nav>
-
+		<Link to="/">Home</Link>
 		<Link to="/courses">Courses</Link>
         {
             userType == "Admin" &&
