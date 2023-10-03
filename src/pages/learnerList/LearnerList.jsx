@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
+
 import { fetchLearners } from '../../api';
 
 import UsersTable from '../../components/usersTable/usersTable';
 
+import './LearnerList.css'
+
 const LearnerList = () => {
 	const navigate = useNavigate();
     const [learners, setLearners] = useState([]);
+	const [count, setCount] = useState(0);
 	const [filters, setFilters] = useState({
 		id: null,
 		firstName: null,
@@ -34,6 +39,7 @@ const LearnerList = () => {
 	try {
 	    const response = await fetchLearners(result);
 	    setLearners(response.data);
+		setCount(response.count);
 	} catch (error) {
 	    console.error(`Error fetching learners: ${error}`);
 		if(error.message.includes("Request failed with status code 401")){
@@ -42,11 +48,19 @@ const LearnerList = () => {
 	}
     };
 
+	const handlePageClick = (event)=>{
+		setFilters((prevState) => ({
+			...prevState,
+			page: event.selected + 1,
+		  }))
+	}
+
 
     return (
 	<div className="admin-container">
 	   <h1>Learners List</h1>
-	    {learners &&
+	    {learners.length > 0 &&
+		<div>
 			    <table className="user-list">
 				<thead>
 				  <tr className="filter-row">
@@ -70,6 +84,18 @@ const LearnerList = () => {
 				<UsersTable users={learners} type="learners"/>
 				</tbody>
 			  </table>
+			  {Math.ceil(count / 10) > 1 && <div className="pagination-div">
+			  <ReactPaginate
+			  breakLabel="..."
+              nextLabel="next"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={0}
+              pageCount={Math.ceil(count / 10)}
+              previousLabel="previous"
+              renderOnZeroPageCount={null}
+			  />
+			  </div>}
+		</div>
 		} 
 	</div>
     );

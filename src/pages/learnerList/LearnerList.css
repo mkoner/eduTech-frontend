@@ -1,0 +1,16 @@
+
+
+.pagination-div ul{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+    padding: 0;
+    justify-content: center;
+}
+ul {
+    list-style: none;
+  }
+  .pagination-div ul li{
+    margin: 1rem;
+    text-decoration: none;
+  }

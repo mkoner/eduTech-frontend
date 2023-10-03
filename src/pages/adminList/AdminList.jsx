@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
+import ReactPaginate from 'react-paginate';
+
 import './AdminList.css';
-import { fetchAdmins, getToken } from '../../api';
+import { fetchAdmins } from '../../api';
 
 import UsersTable from '../../components/usersTable/usersTable';
 
 const AdminList = () => {
 	const navigate = useNavigate();
     const [admins, setAdmins] = useState([]);
+	const [count, setCount] = useState(0);
 	const [filters, setFilters] = useState({
 		id: null,
 		firstName: null,
@@ -36,6 +38,7 @@ const AdminList = () => {
 	try {
 	    const response = await fetchAdmins(result);
 	    setAdmins(response.data);
+		setCount(response.count);
 	} catch (error) {
 	    console.error(`Error fetching admins: ${error.message}`);
 		if(error.message.includes("Request failed with status code 401")){
@@ -44,6 +47,13 @@ const AdminList = () => {
 	}
     };
 
+	const handlePageClick = (event)=>{
+		setFilters((prevState) => ({
+			...prevState,
+			page: event.selected + 1,
+		  }))
+	}
+
 
     return (
 	<div className="admin-container">
@@ -51,8 +61,9 @@ const AdminList = () => {
 	   <h1>Admin Users</h1>
 	   <button onClick={()=> navigate("/admins/new")}>New Admin</button>
 	   </div>
-	    {admins &&
-			    <table className="user-list">
+	    {admins.length > 0 &&
+		<div>
+						    <table className="user-list">
 				<thead>
 				  <tr className="filter-row">
 					<th>Id</th>
@@ -75,6 +86,18 @@ const AdminList = () => {
 				<UsersTable users={admins} type="admins"/>
 				</tbody>
 			  </table>
+			  {Math.ceil(count / 10) > 1 && <div className="pagination-div">
+			  <ReactPaginate
+			  breakLabel="..."
+              nextLabel="next"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={0}
+              pageCount={Math.ceil(count / 10)}
+              previousLabel="previous"
+              renderOnZeroPageCount={null}
+			  />
+			  </div>}
+		</div>
 		} 
 	</div>
     );

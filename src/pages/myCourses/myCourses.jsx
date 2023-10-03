@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
+
 import './myCourses.css';
 import { fetchLearnersCourses } from '../../api';
 
@@ -11,6 +13,7 @@ const MyCourseList = () => {
 	const navigate = useNavigate();
 	const userType = localStorage.getItem("userType") ? localStorage.getItem("userType") : null;
     const [courses, setCourses] = useState([]);
+	const [count, setCount] = useState(0);
 	const [filters, setFilters] = useState({
 		id: null,
 		keyword: null,
@@ -43,6 +46,13 @@ const MyCourseList = () => {
 	}
     };
 
+	const handlePageClick = (event)=>{
+		setFilters((prevState) => ({
+			...prevState,
+			page: event.selected + 1,
+		  }))
+	}
+
 
     return (
 	<>
@@ -56,6 +66,17 @@ const MyCourseList = () => {
                     <CourseCard key={course.id} course={course} mycourse={true} />)
             }
             </div>
+			{Math.ceil(count / 10) > 1 && <div className="pagination-div">
+			  <ReactPaginate
+			  breakLabel="..."
+              nextLabel="next"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={0}
+              pageCount={Math.ceil(count / 10)}
+              previousLabel="previous"
+              renderOnZeroPageCount={null}
+			  />
+			  </div>}
         </div>
       } 
 	</>
