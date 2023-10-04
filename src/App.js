@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 import HomePage from './components/HomePage';
 import AdminList from './pages/adminList/AdminList';
 import AdminLogin from './pages/adminLogin/AdminLogin';
@@ -20,20 +21,7 @@ import Profile from './pages/profile/profile';
 
 import './App.css'
 
-/*
-<nav className="navbar navbar-expand-lg navbar-light bg-light">
-		    <div className="container-fluid">
-			<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-			    <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-			    <li className="nav-item"><Link className="nav-link" to="/admins">Admin</Link></li>
-			    <li className="nav-item"><Link className="nav-link" to="/learners">Learners</Link></li>
-			    <li className="nav-item"><Link className="nav-link" to="/course-materials">Course Materials</Link></li>
-			    <li className="nav-item"><Link className="nav-link" to="/courses">Courses</Link></li>
-				<li className="nav-item"><Link className="nav-link" to="learners/my-courses">My courses</Link></li>
-			</ul>
-		    </div>
-		</nav>
-*/
+
 
 const App = () => {
     return (

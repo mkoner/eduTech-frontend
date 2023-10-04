@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { useNavigate } from 'react-router-dom'
+
+import './Home.css'
 
 const theme = {
     primary: '#007bff', // a shade of blue
@@ -95,6 +98,7 @@ const Footer = styled.footer`
 `;
 
 const Homepage = () => {
+    const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearchChange = (event) => {
@@ -111,14 +115,19 @@ const Homepage = () => {
 	    <GlobalStyle />
 	    <HomepageContainer>
 		<Header>
-		    <h1>Welcome to EduTech</h1>
+            <div className='home-header-container'>
+            <div></div>
+            <div className='home-title'>
+            <h1>Welcome to EduTech</h1>
 		    <p>Empowering African Students Through Technology</p>
-		    <SearchContainer>
+            </div>
+		    {/*<SearchContainer>
 			<SearchForm onSubmit={handleSearchSubmit}>
 			    <SearchBar value={searchTerm} onChange={handleSearchChange} placeholder="Search..." />
 			    <SearchButton type="submit">Go</SearchButton>
 			</SearchForm>
-		    </SearchContainer>
+		    </SearchContainer>*/}
+            </div>
 		</Header>
 		<Hero />
 		<CardContainer>
@@ -129,7 +138,7 @@ const Homepage = () => {
 		    <Card>
 			<h2>Our Courses</h2>
 			<p>Explore our extensive course library and start learning today!</p>
-			<Button>View Courses</Button>
+			<Button onClick={()=>navigate("/courses")}>View Courses</Button>
 		    </Card>
 		</CardContainer>
 		<Footer>

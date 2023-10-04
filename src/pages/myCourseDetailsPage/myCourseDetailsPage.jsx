@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { getCourseById, updateCourse, fetchCourseMaterialsForCourse, registerForCourse } from "../../api";
 
+import './myCourseDetailsPage.css'
+
 const MyCourseDetailsPage = () => {
   const userType = localStorage.getItem("userType") ? localStorage.getItem("userType") : null;
   const navigate = useNavigate();

@@ -56,7 +56,7 @@ const CourseList = () => {
 	  {
         courses && 
         <div className="courses-container">
-            <input className='search-input' type="text" name="keyword" value={keyword} onChange={handleChange}/>
+            <input className='search-input' type="text" name="keyword" value={keyword} onChange={handleChange} placeholder='Search a course'/>
             <div className='courses'>
             {
                 courses.map(course => 

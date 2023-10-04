@@ -1,4 +1,9 @@
-
+.courses-container{
+    text-align: center; 
+}
+.courses-container input{
+    margin: 1em auto;
+}
 .courses{
     display: flex;
     flex-flow: row wrap;

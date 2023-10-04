@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 import { getCourseById, updateCourse, fetchCourseMaterialsForCourse, registerForCourse } from "../../api";
 
+import './CourseDetailsPage.css'
+
 const CourseDetailsPage = () => {
   const userType = localStorage.getItem("userType") ? localStorage.getItem("userType") : null;
   const navigate = useNavigate();
@@ -116,8 +118,10 @@ const CourseDetailsPage = () => {
            </form>
         </div>  
         <div className="course-materails-admin">
+          <div className="course-materails-admin-title">
           <h2>Course materials</h2>
           <button onClick={addMaterial}>Add Material</button>
+          </div>
           {courseMaterials.length > 0 && <table className="course-materails-table">
             <thead>
               <tr>

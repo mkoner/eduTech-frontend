@@ -1,0 +1,13 @@
+.course-details-learner{
+    text-align: left;
+    margin-left: 5%;
+}
+
+.course-details-learner .course-details{
+    text-align: center;
+    margin: 2em auto;
+}
+
+.course-details-learner .course-materails-admin{
+    margin: 1em auto;
+}

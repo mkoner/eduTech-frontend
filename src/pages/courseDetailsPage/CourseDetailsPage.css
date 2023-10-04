@@ -1,0 +1,11 @@
+
+
+.course-materails-admin-title{
+    display:  flex;
+    justify-content: space-between;
+    margin: 1em auto;
+}
+
+.course-details{
+    text-align: center;
+}

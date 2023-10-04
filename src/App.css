@@ -53,8 +53,6 @@ a{
 
 /* Header.css */
 .Header {
-    position: fixed;
-    top: 0;
     width: 100%;
     background-color: #f8f9fa; /* This is a light gray color, replace with the color you want */
     padding: 20px 0;
@@ -80,3 +78,23 @@ a{
     font-size: 14px;
     text-align: center;
 }
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+table th,
+table td {
+    padding: 5px;
+  }
+  
+table th {
+    background-color: #ccc;
+  }
+
+table tr:nth-child(even) {
+    background-color: #ADD8E6;
+}
+
