@@ -4,7 +4,7 @@ import './AddCourseMaterial.css';
 
 import { createCourseMaterial } from '../../api';
 
-const addCourseMaterial = () => {
+const AddCourseMaterial = () => {
     const { id } = useParams(); 
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
@@ -45,4 +45,4 @@ const addCourseMaterial = () => {
     );
 };
 
-export default addCourseMaterial;
+export default AddCourseMaterial;

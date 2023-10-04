@@ -19,7 +19,8 @@ import AddAdmin from './pages/addAdmin/AddAdmin';
 import Profile from './pages/profile/profile';
 
 import './App.css'
-import AddCourseMaterial from './pages/addCourseMaterial/addCourseMaterial';
+import AddCourseMaterial from './pages/addCourseMaterial/AddCourseMaterial';
+
 
 
 
