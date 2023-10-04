@@ -1,11 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Admin from './components/Admins';
-import Learners from './components/Learners';
-import CourseMaterials from './components/CourseMaterials';
-import Courses from './components/Courses';
 import HomePage from './components/HomePage';
-import Login from './components/Login';
 import AdminList from './pages/adminList/AdminList';
 import AdminLogin from './pages/adminLogin/AdminLogin';
 import LearnerLogin from './pages/learnerLogin/LearnerLogin';
@@ -22,6 +17,8 @@ import Header from './components/header/header';
 import LearnerSignUp from './pages/learnerSignUp/LearnerSignUp';
 import AddAdmin from './pages/addAdmin/AddAdmin';
 import Profile from './pages/profile/profile';
+
+import './App.css'
 
 /*
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,13 +46,11 @@ const App = () => {
 			<Route path="/admins/login" element={<AdminLogin />} />
 			<Route path="/admins/new" element={<AddAdmin />} />
 			<Route path="/admins/:id" element={<AdminDetailsPage />} />
-		    <Route path="/login" element={<Login />} />
 		    <Route path="/learners" element={<LearnerList />} />
 			<Route path="/learners/login" element={<LearnerLogin />} />
 			<Route path="/learners/signup" element={<LearnerSignUp />} />
 			<Route path="/learners/my-courses" element={<MyCourseList />} />
 			<Route path="/learners/:id" element={<LearnerDetailsPage />} />
-		    <Route path="/course-materials" element={<CourseMaterials />} />
 		    <Route path="/courses" element={<CourseList />} />
 			<Route path="/add-course" element={<AdminCourseCreation />} />
 			<Route path="/courses/:id" element={<CourseDetailsPage />} />

@@ -61,7 +61,7 @@ const AdminList = () => {
 	   <h1>Admin Users</h1>
 	   <button onClick={()=> navigate("/admins/new")}>New Admin</button>
 	   </div>
-	    {admins.length > 0 &&
+	    {admins &&
 		<div>
 						    <table className="user-list">
 				<thead>

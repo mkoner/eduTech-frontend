@@ -122,7 +122,7 @@ const Profile = () => {
         <input type="checkbox" name="is_active" checked={is_active} onChange={checkHandler}/>
         <br/>
       </div>
-      <button type="submit">Update</button>
+      <input type="submit" value="Update" />
     </form>
   );
 };

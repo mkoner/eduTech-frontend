@@ -1,4 +1,6 @@
-
+.admin-container{
+  margin: 2em 1em;
+}
   .user-list {
     border-collapse: collapse;
     width: 100%;
@@ -27,4 +29,5 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  margin-bottom: 1em;
 }

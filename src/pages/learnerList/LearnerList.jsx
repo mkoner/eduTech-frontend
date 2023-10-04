@@ -59,7 +59,7 @@ const LearnerList = () => {
     return (
 	<div className="admin-container">
 	   <h1>Learners List</h1>
-	    {learners.length > 0 &&
+	    {learners &&
 		<div>
 			    <table className="user-list">
 				<thead>

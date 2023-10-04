@@ -15,7 +15,7 @@ const Header = () => {
     }
     return (
 	<header className="header">
-	    <h1>EduTech</h1>
+	    <Link to="/"><h1>EduTech</h1></Link>
 	    <nav>
 
 		<Link to="/courses">Courses</Link>
