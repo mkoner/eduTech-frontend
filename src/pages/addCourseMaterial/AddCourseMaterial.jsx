@@ -1,49 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom'
+import './AddCourseMaterial.css';
 
 import { createCourseMaterial } from '../../api';
-
 
 const AddCourseMaterial = () => {
     const { id } = useParams(); 
     const navigate = useNavigate();
-    const [courseMaterial, setCourseMaterial] = useState({
-        title: "",
-        source: "",
-        author: "",
-        link: "",
-    });
-    const {title, source, author, link} = courseMaterial;
+    const [title, setTitle] = useState('');
+    const [source, setSource] = useState('');
+    const [author, setAuthor] = useState('');
+    const [link, setLink] = useState(''); 
+  
 
-    const handleChange = (evt) => {
-        const { name, value, } = evt.target;
-        setCourseMaterial((prevState) => ({
-          ...prevState,
-          [name]: value,
-        }))
-      }
-
-    const addCourseMaterial = async ()=>{
+    const createNewCourseMaterial = async (evt) => {
+        evt.preventDefault();
         try {
-            const response = await createCourseMaterial(id, courseMaterial);
-            //navigate(`/courses/${id}`);
+            const response = await createCourseMaterial(id, { title, source, author, link, });
+            if (response.data) {
+                    navigate(`/courses/${id}`);
+              }
         } catch (error) {
-            console.error(`Error fetching courses: ${error.message}`);
+            console.error(error.message)
         }
     }
 
     return (
-        <>
-        <form action="">
-        <input type="text" name='title' value={title} onChange={handleChange} placeholder="Material Title" />
-	    <input type="text" name='source' value={source} onChange={handleChange} placeholder="Material Source" />
-	    <input type="text" name='author' value={author} onChange={handleChange} placeholder="Material Author" />
-	    <input type="text" name='link' value={link} onChange={handleChange} placeholder="Material Link" />
-	    <button onClick={addCourseMaterial}>Add Course Material</button>
-        </form>
-        </>
-    )
-
-}
+	<form onSubmit={createNewCourseMaterial}>
+        <h2>Add a new Course material</h2>
+	    <label>Author:</label>
+		<input type="text" value={author} onChange={e => setAuthor(e.target.value)} />
+	    
+	    <label>Link:</label>
+		<input type="text" value={link} onChange={e => setLink(e.target.value)} required />
+	    
+	    <label>title:</label>
+		<input type="title" value={title} onChange={e => setTitle(e.target.value)} required />
+	    
+	    <label>source:</label>
+		<input type="source" value={source} onChange={e => setSource(e.target.value)} required />
+	    
+	    <input type="submit" value="ADD" />
+	</form>
+    );
+};
 
 export default AddCourseMaterial;

@@ -10,7 +10,6 @@ import CourseList from './pages/courseList/CourseList';
 import AdminDetailsPage from './pages/adminDetailsPage/AdminDetailsPage';
 import LearnerDetailsPage from './pages/learnerDetailsPage/LearnerDetailsPage';
 import CourseDetailsPage from './pages/courseDetailsPage/CourseDetailsPage';
-import AddCourseMaterial from './pages/addCourseMaterial/AddCourseMaterial';
 import AdminCourseCreation from './pages/adminCourseCreation/AdminCourseCreation';
 import MyCourseList from './pages/myCourses/myCourses';
 import MyCourseDetailsPage from './pages/myCourseDetailsPage/myCourseDetailsPage';
@@ -20,6 +19,7 @@ import AddAdmin from './pages/addAdmin/AddAdmin';
 import Profile from './pages/profile/profile';
 
 import './App.css'
+import AddCourseMaterial from './pages/addCourseMaterial/addCourseMaterial';
 
 
 

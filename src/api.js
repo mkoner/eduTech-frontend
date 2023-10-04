@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000/'; // replace with your Django backend URL
+const API_URL = 'https://edutech-main.onrender.com/'; // replace with your Django backend URL
 const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
 
 export const getToken = () => localStorage.getItem("token") ? localStorage.getItem("token") : null;
